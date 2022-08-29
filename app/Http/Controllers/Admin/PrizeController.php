@@ -14,7 +14,7 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.prize.index');
     }
 
     /**

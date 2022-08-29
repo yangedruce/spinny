@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\CodeController as AdminCodeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PrizeController as AdminPrizeController;
 use App\Http\Controllers\Admin\UserController;
-// use App\Http\Controllers\Admin\WinnerController;
+use App\Http\Controllers\Admin\WinnerController as AdminWinnerController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PrizeController;
 // use App\Http\Controllers\WinnerController;
@@ -28,9 +28,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => ['auth', 'is_admin']
+    'middleware' => ['auth']
 ], function () {
-    // Route::get('/board', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/code/index', [AdminCodeController::class, 'index'])->name('admin.code.index');
+    Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
+    Route::get('/winner/index', [AdminWinnerController::class, 'index'])->name('admin.winner.index');
 });
 
 require __DIR__.'/auth.php';
