@@ -22,6 +22,9 @@
                 @if (Route::is('dashboard') || Route::is('admin.grand.prize.winner.index'))
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            No.
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -34,6 +37,9 @@
                 @elseif (Route::is('admin.code.index'))
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            No.
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -45,6 +51,9 @@
                     </tr>
                 @elseif (Route::is('admin.prize.index'))
                     <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            No.
+                        </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Prize Code
                         </th>
@@ -60,6 +69,9 @@
                     </tr>
                 @elseif (Route::is('admin.prize.winner.index'))
                     <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            No.
+                        </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
@@ -77,59 +89,95 @@
             </thead>
             <tbody class="bg-white divide-y divide-rose-200">
                 @if (Route::is('dashboard') || Route::is('admin.grand.prize.winner.index'))
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            C0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            jane@gmail.com
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            1
-                        </td>
-                    </tr>
+                    @forelse($grandprizewinners ?? [] as $no => $grandprizewinner)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ ++$no }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $grandprizewinner->code->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $grandprizewinner->email }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $grandprizewinner->month }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                        </tr>
+                    @endforelse
                 @elseif (Route::is('admin.code.index'))
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            C0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            jane@gmail.com
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Yes
-                        </td>
-                    </tr>
+                    @forelse($codes ?? [] as $no => $code)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ ++$no }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $code->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $code->email }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $code->validation ? 'Yes' : 'No' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                        </tr>
+                    @endforelse
                 @elseif (Route::is('admin.prize.index'))
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            P0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Iphone
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            50
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            5
-                        </td>
-                    </tr>
+                    @forelse($prizes ?? [] as $no => $prize)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ ++$no }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prize->prize_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $prize->prize_name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prize->total_count }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prize->remaining }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                        </tr>
+                    @endforelse
                 @elseif (Route::is('admin.prize.winner.index'))
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            C0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            P0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            jane@gmail.com
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Yes
-                        </td>
-                    </tr>
+                    @forelse($prizewinners ?? [] as $no => $prizewinner)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ ++$no }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prizewinner->code->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prizewinner->prize->prize_name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $prizewinner->email }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $prizewinner->shared ? 'Yes' : 'No' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                        </tr>
+                    @endforelse
                 @endif
             </tbody>
         </table>

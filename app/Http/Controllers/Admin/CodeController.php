@@ -15,7 +15,9 @@ class CodeController extends Controller
      */
     public function index()
     {
-        return view('admin.code.index');
+        $codes = Code::all();
+
+        return view('admin.code.index', ['codes' => $codes]);
     }
 
     /**

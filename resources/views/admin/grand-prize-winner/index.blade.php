@@ -7,7 +7,7 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <x-table :title='"Grand Prize Winners"'></x-table>
+            <x-table :title='"Grand Prize Winners"' :grandprizewinners="$grandprizewinners"></x-table>
         </div>
     </div>
 </x-app-layout>

@@ -19,8 +19,8 @@ class PrizeFactory extends Factory
         return [
             'prize_code' => $this->faker->randomNumber(6),
             'prize_name' => $this->faker->name,
-            'total_count' => 10,
-            'remaining' => 2,
+            'total_count' => $this->faker->randomNumber(3),
+            'remaining' => $this->faker->randomNumber(2),
         ];
     }
 }

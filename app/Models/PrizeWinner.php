@@ -15,4 +15,14 @@ class PrizeWinner extends Model
         'code_id',
         'prize_id',
     ];
+
+    public function prize()
+    {
+        return $this->belongsTo(Prize::class);
+    }
+
+    public function code()
+    {
+        return $this->belongsTo(Code::class);
+    }
 }

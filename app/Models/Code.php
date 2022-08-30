@@ -14,4 +14,14 @@ class Code extends Model
         'email',
         'validation',
     ];
+
+    public function prizewinners()
+    {
+        return $this->hasMany(PrizeWinner::class);
+    }
+
+    public function grandprizewinners()
+    {
+        return $this->hasMany(GrandPrizeWinner::class);
+    }
 }

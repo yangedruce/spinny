@@ -15,7 +15,9 @@ class GrandPrizeWinnerController extends Controller
      */
     public function index()
     {
-        return view('admin.grand-prize-winner.index');
+        $grandprizewinners = GrandPrizeWinner::all();
+
+        return view('admin.grand-prize-winner.index', ['grandprizewinners' => $grandprizewinners]);
     }
 
     /**

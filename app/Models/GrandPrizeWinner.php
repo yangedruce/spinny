@@ -14,4 +14,9 @@ class GrandPrizeWinner extends Model
         'month',
         'code_id',
     ];
+
+    public function code()
+    {
+        return $this->belongsTo(Code::class);
+    }
 }

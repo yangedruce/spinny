@@ -15,7 +15,9 @@ class PrizeWinnerController extends Controller
      */
     public function index()
     {
-        return view('admin.prize-winner.index');
+        $prizewinners = PrizeWinner::all();
+
+        return view('admin.prize-winner.index', ['prizewinners' => $prizewinners]);
     }
 
     /**

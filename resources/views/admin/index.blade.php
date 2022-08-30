@@ -19,7 +19,7 @@
                 <div data-wheelnav-navitemtext="8"></div>
                 <div data-wheelnav-navitemtext="9"></div>
             </div>
-            <x-table :title='"Grand Prize Winner"'></x-table>
+            <x-table :title='"Grand Prize Winner"' :grandprizewinners="$grandprizewinners"></x-table>
         </div>
     </div>
 </x-app-layout>

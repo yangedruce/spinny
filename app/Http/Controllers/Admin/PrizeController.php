@@ -15,7 +15,9 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        return view('admin.prize.index');
+        $prizes = Prize::all();
+
+        return view('admin.prize.index', ['prizes' => $prizes]);
     }
 
     /**

@@ -15,4 +15,9 @@ class Prize extends Model
         'total_count',
         'remaining',
     ];
+
+    public function prizewinners()
+    {
+        return $this->hasMany(PrizeWinner::class);
+    }
 }
