@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class GrandPrizeWinner extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'email',
+        'month',
+        'code_id',
+    ];
 }

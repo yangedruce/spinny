@@ -22,7 +22,6 @@ class CreateGrandPrizeWinnersTable extends Migration
             $table->foreignId('code_id')
                 ->constrained()
                 ->onDelete('cascade');
-
         });
     }
 
