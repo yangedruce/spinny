@@ -17,7 +17,7 @@ class CreateCodesTable extends Migration
             $table->id();
             $table->string('user_code')->unique();
             $table->string('email');
-            $table->string('validation')->nullable()->default(null);
+            $table->boolean('validation')->nullable()->default(false);
             $table->timestamps();
         });
     }

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Prize;
+use App\Models\PrizeWinner;
 use Illuminate\Http\Request;
 
-class PrizeController extends Controller
+class PrizeWinnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        return view('admin.prize.index');
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class PrizeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  Prize $prize
+     * @param  \App\Models\PrizeWinner  $prizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function show(Prize $prize)
+    public function show(PrizeWinner $prizeWinner)
     {
         //
     }
@@ -53,10 +52,10 @@ class PrizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Prize $prize
+     * @param  \App\Models\PrizeWinner  $prizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prize $prize)
+    public function edit(PrizeWinner $prizeWinner)
     {
         //
     }
@@ -65,10 +64,10 @@ class PrizeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Prize $prize
+     * @param  \App\Models\PrizeWinner  $prizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prize $prize)
+    public function update(Request $request, PrizeWinner $prizeWinner)
     {
         //
     }
@@ -76,10 +75,10 @@ class PrizeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Prize $prize
+     * @param  \App\Models\PrizeWinner  $prizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prize $prize)
+    public function destroy(PrizeWinner $prizeWinner)
     {
         //
     }

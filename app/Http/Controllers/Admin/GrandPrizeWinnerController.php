@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Prize;
+use App\Models\GrandPrizeWinner;
 use Illuminate\Http\Request;
 
-class PrizeController extends Controller
+class GrandPrizeWinnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        return view('admin.prize.index');
+        return view('admin.grand-prize-winner.index');
     }
 
     /**
@@ -42,10 +42,10 @@ class PrizeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  Prize $prize
+     * @param  int  GrandPrizeWinner $grandprizewinner
      * @return \Illuminate\Http\Response
      */
-    public function show(Prize $prize)
+    public function show(GrandPrizeWinner $grandprizewinner)
     {
         //
     }
@@ -53,10 +53,10 @@ class PrizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  Prize $prize
+     * @param  int  GrandPrizeWinner $grandprizewinner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prize $prize)
+    public function edit(GrandPrizeWinner $grandprizewinner)
     {
         //
     }
@@ -65,10 +65,10 @@ class PrizeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  Prize $prize
+     * @param  int  GrandPrizeWinner $grandprizewinner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prize $prize)
+    public function update(Request $request, GrandPrizeWinner $grandprizewinner)
     {
         //
     }
@@ -76,10 +76,10 @@ class PrizeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  Prize $prize
+     * @param  int  GrandPrizeWinner $grandprizewinner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prize $prize)
+    public function destroy(GrandPrizeWinner $grandprizewinner)
     {
         //
     }

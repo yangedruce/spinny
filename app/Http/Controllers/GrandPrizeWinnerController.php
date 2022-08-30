@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Winner;
+use App\Models\GrandPrizeWinner;
 use Illuminate\Http\Request;
 
-class WinnerController extends Controller
+class GrandPrizeWinnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class WinnerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Winner  $winner
+     * @param  \App\Models\GrandPrizeWinner  $grandPrizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function show(Winner $winner)
+    public function show(GrandPrizeWinner $grandPrizeWinner)
     {
         //
     }
@@ -52,10 +52,10 @@ class WinnerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Winner  $winner
+     * @param  \App\Models\GrandPrizeWinner  $grandPrizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function edit(Winner $winner)
+    public function edit(GrandPrizeWinner $grandPrizeWinner)
     {
         //
     }
@@ -64,10 +64,10 @@ class WinnerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Winner  $winner
+     * @param  \App\Models\GrandPrizeWinner  $grandPrizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Winner $winner)
+    public function update(Request $request, GrandPrizeWinner $grandPrizeWinner)
     {
         //
     }
@@ -75,10 +75,10 @@ class WinnerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Winner  $winner
+     * @param  \App\Models\GrandPrizeWinner  $grandPrizeWinner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Winner $winner)
+    public function destroy(GrandPrizeWinner $grandPrizeWinner)
     {
         //
     }

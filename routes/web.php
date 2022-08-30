@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\CodeController as AdminCodeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PrizeController as AdminPrizeController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\WinnerController as AdminWinnerController;
+use App\Http\Controllers\Admin\GrandPrizeWinnerController as AdminGrandPrizeWinnerController;
+use App\Http\Controllers\Admin\PrizeWinnerController as AdminPrizeWinnerController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PrizeController;
-// use App\Http\Controllers\WinnerController;
+// use App\Http\Controllers\GrandPrizeWinnerController;
+// use App\Http\Controllers\PrizeWinnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,8 @@ Route::group([
 ], function () {
     Route::get('/code/index', [AdminCodeController::class, 'index'])->name('admin.code.index');
     Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
-    Route::get('/winner/index', [AdminWinnerController::class, 'index'])->name('admin.winner.index');
+    Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
+    Route::get('/grand-prize-winner/index', [AdminGrandPrizeWinnerController::class, 'index'])->name('admin.grand.prize.winner.index');
 });
 
 require __DIR__.'/auth.php';

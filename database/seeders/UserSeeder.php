@@ -19,8 +19,7 @@ class UserSeeder extends Seeder
                 [
                     'name' => 'Admin',
                     'email' => 'admin@yoodo.com.my',
-                    'password' => bcrypt('secret'),
-                    'is_admin' => 1
+                    'password' => bcrypt('secret')
                 ]
             ]);
 

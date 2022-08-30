@@ -10,7 +10,7 @@
                     <x-button>
                         {{ __('Export') }}
                     </x-button>
-                @else
+                @elseif (Route::is('admin.grand.prize.winner.index') || Route::is('admin.prize.winner.index'))
                     <x-button>
                         {{ __('Export') }}
                     </x-button>
@@ -19,19 +19,16 @@
         </div>
         <table class="w-full divide-y divide-rose-200">
             <thead class="bg-rose-50">
-                @if (Route::is('dashboard') || Route::is('admin.winner.index'))
+                @if (Route::is('dashboard') || Route::is('admin.grand.prize.winner.index'))
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
-                            Prize Code
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
-                            Shared
+                            Month
                         </th>
                     </tr>
                 @elseif (Route::is('admin.code.index'))
@@ -61,22 +58,34 @@
                             Remaining
                         </th>
                     </tr>
+                @elseif (Route::is('admin.prize.winner.index'))
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            User Code
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Prize Code
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Email
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Shared
+                        </th>
+                    </tr>
                 @endif
             </thead>
             <tbody class="bg-white divide-y divide-rose-200">
-                @if (Route::is('dashboard') || Route::is('admin.winner.index'))
+                @if (Route::is('dashboard') || Route::is('admin.grand.prize.winner.index'))
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
                             C0001
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            P0001
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             jane@gmail.com
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            Yes
+                            1
                         </td>
                     </tr>
                 @elseif (Route::is('admin.code.index'))
@@ -104,6 +113,21 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
                             5
+                        </td>
+                    </tr>
+                @elseif (Route::is('admin.prize.winner.index'))
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                            C0001
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                            P0001
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            jane@gmail.com
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            Yes
                         </td>
                     </tr>
                 @endif
