@@ -25,10 +25,22 @@
                             {{ __('Export') }}
                         </x-button>
                     </form>
-                @elseif (Route::is('admin.grand.prize.winner.index') || Route::is('admin.prize.winner.index'))
-                    <x-button>
-                        {{ __('Export') }}
-                    </x-button>
+                @elseif (Route::is('admin.grand.prize.winner.index'))
+                    <form method="POST" action="{{ route('admin.grand.prize.winner.export') }}">
+                        @method('POST')
+                        @csrf
+                        <x-button>
+                            {{ __('Export') }}
+                        </x-button>
+                    </form>
+                @elseif (Route::is('admin.prize.winner.index'))
+                    <form method="POST" action="{{ route('admin.prize.winner.export') }}">
+                        @method('POST')
+                        @csrf
+                        <x-button>
+                            {{ __('Export') }}
+                        </x-button>
+                    </form>
                 @endif
             </div>
         </div>

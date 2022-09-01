@@ -7,7 +7,6 @@ use App\Models\Prize;
 use App\Exports\PrizesCodeExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-
 class PrizesCodeExportController extends Controller
 {
     public function export()

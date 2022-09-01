@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\GrandPrizeWinnerController as AdminGrandPrizeWinn
 use App\Http\Controllers\Admin\PrizeWinnerController as AdminPrizeWinnerController;
 use App\Http\Controllers\Admin\UsersCodeExportController as AdminUsersCodeExportController;
 use App\Http\Controllers\Admin\PrizesCodeExportController as AdminPrizesCodeExportController;
+use App\Http\Controllers\Admin\PrizeWinnersExportController as AdminPrizeWinnersExportController;
+use App\Http\Controllers\Admin\GrandPrizeWinnersExportController as AdminGrandPrizeWinnersExportController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PrizeController;
 // use App\Http\Controllers\GrandPrizeWinnerController;
@@ -41,8 +43,10 @@ Route::group([
     Route::post('/prize/export', [AdminPrizesCodeExportController::class, 'export'])->name('admin.prize.export');
 
     Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
+    Route::post('/prize-winner/export', [AdminPrizeWinnersExportController::class, 'export'])->name('admin.prize.winner.export');
 
     Route::get('/grand-prize-winner/index', [AdminGrandPrizeWinnerController::class, 'index'])->name('admin.grand.prize.winner.index');
+    Route::post('/grand-prize-winner/export', [AdminGrandPrizeWinnersExportController::class, 'export'])->name('admin.grand.prize.winner.export');
 });
 
 require __DIR__.'/auth.php';
