@@ -27,7 +27,7 @@ class PrizeWinnersExport implements FromCollection, WithHeadings
                 $prizewinner->code_id,
                 $prizewinner->prize_id,
                 $prizewinner->email,
-                $prizewinner->shared,
+                $prizewinner->shared ? 'Yes' : 'No',
             ];
         }
 
