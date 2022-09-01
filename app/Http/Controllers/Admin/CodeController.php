@@ -15,7 +15,7 @@ class CodeController extends Controller
      */
     public function index()
     {
-        $codes = Code::all();
+        $codes = Code::paginate(10);
 
         return view('admin.code.index', ['codes' => $codes]);
     }

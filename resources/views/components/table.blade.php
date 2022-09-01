@@ -3,7 +3,18 @@
         <div class="flex py-2 items-center justify-between px-6">
             <h6 class="text-base font-semibold tracking-widest uppercase">{{ $title ?? "" }}</h6>
             <div class="flex items-center">
-                @if (Route::is('admin.code.index') || Route::is('admin.prize.index'))
+                @if (Route::is('admin.code.index'))
+                    <x-button class="mr-2">
+                        {{ __('Import') }}
+                    </x-button>
+                    <form method="POST" action="{{ route('admin.code.export') }}">
+                        @method('POST')
+                        @csrf
+                        <x-button>
+                            {{ __('Export') }}
+                        </x-button>
+                    </form>
+                @elseif (Route::is('admin.prize.index'))
                     <x-button class="mr-2">
                         {{ __('Import') }}
                     </x-button>
@@ -28,6 +39,12 @@
                             User Code
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Phone
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -41,6 +58,12 @@
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Phone
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
@@ -79,6 +102,12 @@
                             Prize Code
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Phone
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
                         </th>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -96,6 +125,12 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
                                 {{ $grandprizewinner->code->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $grandprizewinner->code->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $grandprizewinner->code->phone }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $grandprizewinner->email }}
@@ -117,6 +152,12 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
                                 {{ $code->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $code->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $code->phone }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $code->email }}
@@ -164,7 +205,13 @@
                                 {{ $prizewinner->code->user_code }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $prizewinner->prize->prize_name }}
+                                {{ $prizewinner->prize->prize_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $prizewinner->code->name }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {{ $prizewinner->code->phone }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $prizewinner->email }}
@@ -181,5 +228,16 @@
                 @endif
             </tbody>
         </table>
+        <div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            @if (Route::is('dashboard') || Route::is('admin.grand.prize.winner.index'))
+                {!! $grandprizewinners->links() !!}
+            @elseif (Route::is('admin.code.index'))
+                {!! $codes->links() !!}
+            @elseif (Route::is('admin.prize.index'))
+                {!! $prizes->links() !!}
+            @elseif (Route::is('admin.prize.winner.index'))
+                {!! $prizewinners->links() !!}
+            @endif
+        </div>
     </div>
 </div>

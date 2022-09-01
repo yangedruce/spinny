@@ -15,7 +15,7 @@ class GrandPrizeWinnerController extends Controller
      */
     public function index()
     {
-        $grandprizewinners = GrandPrizeWinner::all();
+        $grandprizewinners = GrandPrizeWinner::paginate(10);
 
         return view('admin.grand-prize-winner.index', ['grandprizewinners' => $grandprizewinners]);
     }

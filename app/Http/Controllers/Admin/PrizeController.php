@@ -15,7 +15,7 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        $prizes = Prize::all();
+        $prizes = Prize::paginate(10);
 
         return view('admin.prize.index', ['prizes' => $prizes]);
     }

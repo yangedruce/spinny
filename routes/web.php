@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\PrizeController as AdminPrizeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\GrandPrizeWinnerController as AdminGrandPrizeWinnerController;
 use App\Http\Controllers\Admin\PrizeWinnerController as AdminPrizeWinnerController;
+use App\Http\Controllers\Admin\UsersCodeExportController as AdminUsersCodeExportController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PrizeController;
 // use App\Http\Controllers\GrandPrizeWinnerController;
@@ -33,8 +34,12 @@ Route::group([
     'middleware' => ['auth']
 ], function () {
     Route::get('/code/index', [AdminCodeController::class, 'index'])->name('admin.code.index');
+    Route::post('/code/export', [AdminUsersCodeExportController::class, 'export'])->name('admin.code.export');
+
     Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
+
     Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
+
     Route::get('/grand-prize-winner/index', [AdminGrandPrizeWinnerController::class, 'index'])->name('admin.grand.prize.winner.index');
 });
 

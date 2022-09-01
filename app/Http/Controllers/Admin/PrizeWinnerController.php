@@ -15,7 +15,7 @@ class PrizeWinnerController extends Controller
      */
     public function index()
     {
-        $prizewinners = PrizeWinner::all();
+        $prizewinners = PrizeWinner::paginate(10);
 
         return view('admin.prize-winner.index', ['prizewinners' => $prizewinners]);
     }

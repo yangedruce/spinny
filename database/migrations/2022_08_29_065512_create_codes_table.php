@@ -16,6 +16,8 @@ class CreateCodesTable extends Migration
         Schema::create('codes', function (Blueprint $table) {
             $table->id();
             $table->string('user_code')->unique();
+            $table->string('name');
+            $table->string('phone');
             $table->string('email');
             $table->boolean('validation')->nullable()->default(false);
             $table->timestamps();

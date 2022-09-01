@@ -18,6 +18,8 @@ class CodeFactory extends Factory
     {
         return [
             'user_code' => $this->faker->randomNumber(6),
+            'name' => $this->faker->name,
+            'phone' => $this->faker->phoneNumber,
             'email' => $this->faker->email,
             'validation' => $this->faker->boolean,
         ];

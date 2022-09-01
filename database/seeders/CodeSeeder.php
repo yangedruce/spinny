@@ -14,6 +14,6 @@ class CodeSeeder extends Seeder
      */
     public function run()
     {
-        Code::factory()->count(10)->create();
+        Code::factory()->count(30)->create();
     }
 }
