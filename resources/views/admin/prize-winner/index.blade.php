@@ -7,8 +7,7 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            {{-- @include('components.table', ['title' => "Prize Winners"]) --}}
-            <x-table :title='"Prize Winners"' :prizewinners="$prizewinners"></x-table>
+            @include('admin.prize-winner.export.table')
         </div>
     </div>
 </x-app-layout>

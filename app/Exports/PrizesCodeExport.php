@@ -4,9 +4,10 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PrizesCodeExport implements FromCollection, WithHeadings
+class PrizesCodeExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     use Exportable;
 

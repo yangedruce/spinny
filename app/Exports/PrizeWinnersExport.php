@@ -2,46 +2,17 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use App\Models\PrizeWinner;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class PrizeWinnersExport implements FromCollection, WithHeadings
+class PrizeWinnersExport implements FromView, ShouldAutoSize
 {
-    use Exportable;
-
-    protected $prizewinners;
-
-    public function __construct($prizewinners)
+    public function view(): View
     {
-        $this->prizewinners = $prizewinners;
-    }
-
-    public function collection()
-    {
-        $output = [];
-
-        foreach ($this->prizewinners as $prizewinner) {
-            $output[] = [
-                $prizewinner->id,
-                $prizewinner->code_id,
-                $prizewinner->prize_id,
-                $prizewinner->email,
-                $prizewinner->shared ? 'Yes' : 'No',
-            ];
-        }
-
-        return collect($output);
-    }
-
-    public function headings(): array
-    {
-        return [
-            'id',
-            'code_id',
-            'prize_id',
-            'email',
-            'shared',
-        ];
+        return view('admin.prize-winner.export.table', [
+            'prizewinners' => PrizeWinner::all()
+        ]);
     }
 }
