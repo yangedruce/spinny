@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\GrandPrizeWinnerController as AdminGrandPrizeWinnerController;
 use App\Http\Controllers\Admin\PrizeWinnerController as AdminPrizeWinnerController;
 use App\Http\Controllers\Admin\UsersCodeExportController as AdminUsersCodeExportController;
+use App\Http\Controllers\Admin\PrizesCodeExportController as AdminPrizesCodeExportController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\PrizeController;
 // use App\Http\Controllers\GrandPrizeWinnerController;
@@ -37,6 +38,7 @@ Route::group([
     Route::post('/code/export', [AdminUsersCodeExportController::class, 'export'])->name('admin.code.export');
 
     Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
+    Route::post('/prize/export', [AdminPrizesCodeExportController::class, 'export'])->name('admin.prize.export');
 
     Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
 

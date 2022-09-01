@@ -18,9 +18,13 @@
                     <x-button class="mr-2">
                         {{ __('Import') }}
                     </x-button>
-                    <x-button>
-                        {{ __('Export') }}
-                    </x-button>
+                    <form method="POST" action="{{ route('admin.prize.export') }}">
+                        @method('POST')
+                        @csrf
+                        <x-button>
+                            {{ __('Export') }}
+                        </x-button>
+                    </form>
                 @elseif (Route::is('admin.grand.prize.winner.index') || Route::is('admin.prize.winner.index'))
                     <x-button>
                         {{ __('Export') }}
