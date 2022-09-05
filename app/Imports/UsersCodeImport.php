@@ -12,11 +12,11 @@ class UsersCodeImport implements ToModel, WithHeadingRow
     {
         if ($row['user_code'] != null) {
             return new UserCode([
-            'user_code' => $row['user_code'],
-            'name' => $row['name'],
-            'phone' => $row['phone'],
-            'email' => $row['email'],
-            'validation' => $row['validation'],
+                'user_code' => $row['user_code'],
+                'name' => $row['name'],
+                'phone' => $row['phone'],
+                'email' => $row['email'],
+                'validation' => $row['validation'],
             ]);
         }
     }

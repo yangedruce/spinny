@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PrizesCodeExportController as AdminPrizesCodeExpo
 use App\Http\Controllers\Admin\PrizeWinnersExportController as AdminPrizeWinnersExportController;
 use App\Http\Controllers\Admin\GrandPrizeWinnersExportController as AdminGrandPrizeWinnersExportController;
 use App\Http\Controllers\Admin\UsersCodeImportController as AdminUsersCodeImportController;
+use App\Http\Controllers\Admin\PrizesCodeImportController as AdminPrizesCodeImportController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,8 @@ Route::group([
 
     Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
     Route::post('/prize/export', [AdminPrizesCodeExportController::class, 'export'])->name('admin.prize.export');
+    Route::get('/prize/import/show', [AdminPrizesCodeImportController::class, 'show'])->name('admin.prize.import.show');
+    Route::post('/prize/import/store', [AdminPrizesCodeImportController::class, 'store'])->name('admin.prize.import.store');
 
     Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
     Route::post('/prize-winner/export', [AdminPrizeWinnersExportController::class, 'export'])->name('admin.prize.winner.export');

@@ -17,7 +17,7 @@
                         </x-button>
                     </form>
                 @elseif (Route::is('admin.prize.index'))
-                    <a href="{{ route('admin.usercode.import.store') }}">
+                    <a href="{{ route('admin.prize.import.show') }}">
                         <x-button class="mr-2">
                             {{ __('Import') }}
                         </x-button>
