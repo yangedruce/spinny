@@ -61,6 +61,18 @@
                             Month
                         </th>
                     </tr>
+                @elseif (Route::is('home.index'))
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            No.
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            User Code
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                            Prize
+                        </th>
+                    </tr>
                 @elseif (Route::is('admin.usercode.index'))
                     <tr>
                         <th scope="col"
@@ -141,6 +153,24 @@
                             <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
                         </tr>
                     @endforelse
+                @elseif (Route::is('home.index'))
+                    @forelse($prizewinners ?? [] as $no => $prizewinner)
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ ++$no }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prizewinner->usercode->user_code }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                                {{ $prizewinner->prize_name }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                        </tr>
+                    @endforelse
                 @elseif (Route::is('admin.usercode.index'))
                     @forelse($usercodes ?? [] as $no => $usercode)
                         <tr>
@@ -198,6 +228,8 @@
         <div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             @if (Route::is('dashboard'))
                 {!! $grandprizewinners->links() !!}
+            @elseif (Route::is('home.index'))
+                {!! $prizewinners->links() !!}
             @elseif (Route::is('admin.usercode.index'))
                 {!! $usercodes->links() !!}
             @elseif (Route::is('admin.prize.index'))
