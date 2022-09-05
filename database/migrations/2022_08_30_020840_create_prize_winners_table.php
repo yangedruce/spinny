@@ -19,7 +19,7 @@ class CreatePrizeWinnersTable extends Migration
             $table->boolean('shared')->nullable()->default(false);
             $table->timestamps();
 
-            $table->foreignId('code_id')
+            $table->foreignId('user_code_id')
                 ->constrained()
                 ->onDelete('cascade');
 
@@ -37,7 +37,7 @@ class CreatePrizeWinnersTable extends Migration
     public function down()
     {
         Schema::table('prize_winners', function (Blueprint $table) {
-            $table->dropForeign(['code_id']);
+            $table->dropForeign(['user_code_id']);
             $table->dropForeign(['prize_id']);
         });
 

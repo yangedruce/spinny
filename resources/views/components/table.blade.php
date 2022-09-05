@@ -3,11 +3,13 @@
         <div class="flex py-2 items-center justify-between px-6">
             <h6 class="text-base font-semibold tracking-widest uppercase">{{ $title ?? "" }}</h6>
             <div class="flex items-center">
-                @if (Route::is('admin.code.index'))
-                    <x-button class="mr-2">
-                        {{ __('Import') }}
-                    </x-button>
-                    <form method="POST" action="{{ route('admin.code.export') }}">
+                @if (Route::is('admin.usercode.index'))
+                    <a href="{{ route('admin.usercode.import.show') }}">
+                        <x-button class="mr-2">
+                            {{ __('Import') }}
+                        </x-button>
+                    </a>
+                    <form method="POST" action="{{ route('admin.usercode.export') }}">
                         @method('POST')
                         @csrf
                         <x-button>
@@ -15,9 +17,11 @@
                         </x-button>
                     </form>
                 @elseif (Route::is('admin.prize.index'))
-                    <x-button class="mr-2">
-                        {{ __('Import') }}
-                    </x-button>
+                    <a href="{{ route('admin.usercode.import.store') }}">
+                        <x-button class="mr-2">
+                            {{ __('Import') }}
+                        </x-button>
+                    </a>
                     <form method="POST" action="{{ route('admin.prize.export') }}">
                         @method('POST')
                         @csrf
@@ -32,61 +36,78 @@
             <thead class="bg-rose-50">
                 @if (Route::is('dashboard'))
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             No.
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Name
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Phone
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Month
                         </th>
                     </tr>
-                @elseif (Route::is('admin.code.index'))
+                @elseif (Route::is('admin.usercode.index'))
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             No.
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             User Code
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Name
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Phone
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Email
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Validation
                         </th>
                     </tr>
                 @elseif (Route::is('admin.prize.index'))
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             No.
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Prize Code
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Prize Name
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Total Count
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                             Remaining
                         </th>
                     </tr>
@@ -100,13 +121,13 @@
                                 {{ ++$no }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $grandprizewinner->code->user_code }}
+                                {{ $grandprizewinner->usercode->user_code }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $grandprizewinner->code->name }}
+                                {{ $grandprizewinner->usercode->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $grandprizewinner->code->phone }}
+                                {{ $grandprizewinner->usercode->phone }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $grandprizewinner->email }}
@@ -120,26 +141,26 @@
                             <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
                         </tr>
                     @endforelse
-                @elseif (Route::is('admin.code.index'))
-                    @forelse($codes ?? [] as $no => $code)
+                @elseif (Route::is('admin.usercode.index'))
+                    @forelse($usercodes ?? [] as $no => $usercode)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
                                 {{ ++$no }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $code->user_code }}
+                                {{ $usercode->user_code }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $code->name }}
+                                {{ $usercode->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $code->phone }}
+                                {{ $usercode->phone }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $code->email }}
+                                {{ $usercode->email }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                {{ $code->validation ? 'Yes' : 'No' }}
+                                {{ $usercode->validation ? 'Yes' : 'No' }}
                             </td>
                         </tr>
                     @empty
@@ -177,8 +198,8 @@
         <div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             @if (Route::is('dashboard'))
                 {!! $grandprizewinners->links() !!}
-            @elseif (Route::is('admin.code.index'))
-                {!! $codes->links() !!}
+            @elseif (Route::is('admin.usercode.index'))
+                {!! $usercodes->links() !!}
             @elseif (Route::is('admin.prize.index'))
                 {!! $prizes->links() !!}
             @endif

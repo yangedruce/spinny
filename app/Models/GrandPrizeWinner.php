@@ -12,11 +12,11 @@ class GrandPrizeWinner extends Model
     protected $fillable = [
         'email',
         'month',
-        'code_id',
+        'user_code_id',
     ];
 
-    public function code()
+    public function usercode()
     {
-        return $this->belongsTo(Code::class);
+        return $this->belongsTo(UserCode::class);
     }
 }

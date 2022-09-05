@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Code;
+use App\Models\UserCode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CodeFactory extends Factory
+class UserCodeFactory extends Factory
 {
-    protected $model = Code::class;
+    protected $model = UserCode::class;
 
     /**
      * Define the model's default state.

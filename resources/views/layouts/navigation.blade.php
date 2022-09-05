@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.code.index')" :active="request()->routeIs('admin.code.index')">
+                    <x-nav-link :href="route('admin.usercode.index')" :active="request()->routeIs('admin.usercode.index')">
                         {{ __('Users Code') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.prize.index')" :active="request()->routeIs('admin.prize.index')">
@@ -78,7 +78,7 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.code.index')" :active="request()->routeIs('admin.code.index')">
+            <x-responsive-nav-link :href="route('admin.usercode.index')" :active="request()->routeIs('admin.usercode.index')">
                 {{ __('Users Code') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.prize.index')" :active="request()->routeIs('admin.prize.index')">

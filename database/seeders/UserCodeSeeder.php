@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Code;
+use App\Models\UserCode;
 use Illuminate\Database\Seeder;
 
-class CodeSeeder extends Seeder
+class UserCodeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CodeSeeder extends Seeder
      */
     public function run()
     {
-        Code::factory()->count(30)->create();
+        UserCode::factory()->count(30)->create();
     }
 }

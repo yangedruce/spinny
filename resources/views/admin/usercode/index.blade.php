@@ -7,7 +7,8 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <x-table :title='"Users Code"' :codes="$codes"></x-table>
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+            <x-table :title='"Users Code"' :usercodes="$usercodes"></x-table>
         </div>
     </div>
 </x-app-layout>

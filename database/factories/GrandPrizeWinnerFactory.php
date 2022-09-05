@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Code;
+use App\Models\UserCode;
 use App\Models\GrandPrizeWinner;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +20,7 @@ class GrandPrizeWinnerFactory extends Factory
         return [
             'email' => $this->faker->email,
             'month' => $this->faker->month,
-            'code_id' => Code::factory()->create()->id,
+            'user_code_id' => UserCode::factory()->create()->id,
         ];
     }
 }

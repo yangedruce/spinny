@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prize;
+use App\Models\UserCode;
 use Illuminate\Http\Request;
 
-class PrizeController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class PrizeController extends Controller
      */
     public function index()
     {
-        //
+        return view('home.index');
     }
 
     /**
@@ -41,10 +41,10 @@ class PrizeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Prize  $prize
+     * @param  \App\Models\UserCode $usercode
      * @return \Illuminate\Http\Response
      */
-    public function show(Prize $prize)
+    public function show(UserCode $usercode)
     {
         //
     }
@@ -52,10 +52,10 @@ class PrizeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Prize  $prize
+     * @param  \App\Models\UserCode $usercode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prize $prize)
+    public function edit(UserCode $usercode)
     {
         //
     }
@@ -64,10 +64,10 @@ class PrizeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Prize  $prize
+     * @param  \App\Models\UserCode $usercode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prize $prize)
+    public function update(Request $request, UserCode $usercode)
     {
         //
     }
@@ -75,10 +75,10 @@ class PrizeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Prize  $prize
+     * @param  \App\Models\UserCode $usercode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prize $prize)
+    public function destroy(UserCode $usercode)
     {
         //
     }

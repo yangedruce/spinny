@@ -11,25 +11,25 @@ class UsersCodeExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     use Exportable;
 
-    protected $codes;
+    protected $usercodes;
 
-    public function __construct($codes)
+    public function __construct($usercodes)
     {
-        $this->codes = $codes;
+        $this->usercodes = $usercodes;
     }
 
     public function collection()
     {
         $output = [];
 
-        foreach ($this->codes as $code) {
+        foreach ($this->usercodes as $usercode) {
             $output[] = [
-                $code->id,
-                $code->user_code,
-                $code->name,
-                $code->phone,
-                $code->email,
-                $code->validation ? 'Yes' : 'No',
+                $usercode->id,
+                $usercode->user_code,
+                $usercode->name,
+                $usercode->phone,
+                $usercode->email,
+                $usercode->validation ? 'Yes' : 'No',
             ];
         }
 

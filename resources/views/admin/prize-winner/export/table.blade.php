@@ -47,33 +47,33 @@
             </thead>
             <tbody class="bg-white divide-y divide-rose-200">
                 @forelse($prizewinners ?? [] as $no => $prizewinner)
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ ++$no }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ $prizewinner->code->user_code }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ $prizewinner->prize->prize_code }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $prizewinner->code->name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $prizewinner->code->phone }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $prizewinner->email }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $prizewinner->shared ? 'Yes' : 'No' }}
-                    </td>
-                </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                            {{ ++$no }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                            {{ $prizewinner->usercode->user_code }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                            {{ $prizewinner->prize->prize_code }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $prizewinner->usercode->name }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $prizewinner->usercode->phone }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $prizewinner->email }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {{ $prizewinner->shared ? 'Yes' : 'No' }}
+                        </td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
-                </tr>
+                    <tr>
+                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
