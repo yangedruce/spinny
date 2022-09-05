@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrizeWinner;
 use App\Models\UserCode;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home.index');
+        $prizewinners = PrizeWinner::paginate(10);
+
+        return view('home.index', ['prizewinners' => $prizewinners]);
     }
 
     /**
