@@ -43,36 +43,36 @@
             </thead>
             <tbody class="bg-white divide-y divide-rose-200">
                 @forelse($grandprizewinners ?? [] as $no => $grandprizewinner)
-                    <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            {{ ++$no }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                            {{ $grandprizewinner->usercode->user_code }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $grandprizewinner->usercode->name }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $grandprizewinner->usercode->phone }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $grandprizewinner->email }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{ $grandprizewinner->month }}
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                        {{ ++$no }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
+                        {{ $grandprizewinner->usercode->user_code }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $grandprizewinner->usercode->name }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $grandprizewinner->usercode->phone }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $grandprizewinner->email }}
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        {{ $grandprizewinner->month }}
+                    </td>
+                </tr>
                 @empty
-                    <tr>
-                        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
-                    </tr>
+                <tr>
+                    <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">No Record Found</td>
+                </tr>
                 @endforelse
             </tbody>
         </table>
         <div class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
             @if (Route::is('admin.grand.prize.winner.index'))
-                {!! $grandprizewinners->links() !!}
+            {!! $grandprizewinners->links() !!}
             @endif
         </div>
     </div>

@@ -163,7 +163,7 @@
                                 {{ $prizewinner->usercode->user_code }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                                {{ $prizewinner->prize_name }}
+                                {{ $prizewinner->prize->prize_name }}
                             </td>
                         </tr>
                     @empty

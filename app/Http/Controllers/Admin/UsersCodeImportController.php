@@ -21,19 +21,23 @@ class UsersCodeImportController extends Controller
 
         $extension = $file->extension();
 
-        if ($extension == 'xlsx' || $extension == 'xls') {
-            // remove all row
-            $usercodes = UserCode::all();
-
-            if (count($usercodes) > 0) {
-                UserCode::query()->delete();
-            }
-
+        if ($extension == 'xlsx' || $extension == 'xls') 
+        {
             Excel::import(new UsersCodeImport(), $file);
+            $importError = false;
+            if (session()->get('importError') != null) {
+                $importError = session()->get('importError');
+            }
+            if ($importError) {
+                return redirect()->back()->withErrors('Column format is invalid');
+            } else {
+                $request->session()->flash('status', 'File imported successfully.');
 
-            $request->session()->flash('status', 'File imported successfully.');
-            return redirect()->route('admin.usercode.index');
-        } else {
+                return redirect()->route('admin.usercode.index');
+            }
+        } 
+        else 
+        {
             return redirect()->back()->withErrors('File extension must be in .xls or .xlsx');
         }
     }

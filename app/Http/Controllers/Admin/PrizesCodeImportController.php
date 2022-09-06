@@ -21,19 +21,23 @@ class PrizesCodeImportController extends Controller
 
         $extension = $file->extension();
 
-        if ($extension == 'xlsx' || $extension == 'xls') {
-            // remove all row
-            $prizes = Prize::all();
-
-            if (count($prizes) > 0) {
-                Prize::query()->delete();
-            }
-
+        if ($extension == 'xlsx' || $extension == 'xls') 
+        {
             Excel::import(new PrizesCodeImport(), $file);
+            $importError = false;
+            if (session()->get('importError') != null) {
+                $importError = session()->get('importError');
+            }
+            if ($importError) {
+                return redirect()->back()->withErrors('Column format is invalid');
+            } else {
+                $request->session()->flash('status', 'File imported successfully.');
 
-            $request->session()->flash('status', 'File imported successfully.');
-            return redirect()->route('admin.prize.index');
-        } else {
+                return redirect()->route('admin.prize.index');
+            }
+        }
+        else 
+        {
             return redirect()->back()->withErrors('File extension must be in .xls or .xlsx');
         }
     }

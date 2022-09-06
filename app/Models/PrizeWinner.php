@@ -18,11 +18,11 @@ class PrizeWinner extends Model
 
     public function prize()
     {
-        return $this->belongsTo(Prize::class);
+        return $this->belongsTo(Prize::class, 'prize_id', 'id');
     }
 
     public function usercode()
     {
-        return $this->belongsTo(UserCode::class);
+        return $this->belongsTo(UserCode::class, 'user_code_id', 'id');
     }
 }
