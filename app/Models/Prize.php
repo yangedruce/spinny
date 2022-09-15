@@ -10,13 +10,13 @@ class Prize extends Model
     use HasFactory;
 
     protected $fillable = [
-        'prize_code',
-        'prize_name',
+        'code',
+        'name',
         'total_count',
         'remaining',
     ];
 
-    public function prizewinners()
+    public function prizeWinners()
     {
         return $this->hasMany(PrizeWinner::class);
     }

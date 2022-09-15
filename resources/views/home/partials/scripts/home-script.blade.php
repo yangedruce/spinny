@@ -27,7 +27,7 @@
                 for (let i = 0; i < prize.length; i++) {
                     segments.push({
                         'textFontSize': 12,
-                        'text': prize[i]['prize_name']
+                        'text': prize[i]['name']
                     });
                 }
 
@@ -114,7 +114,7 @@
         let inputValues = {
             _token: token,
             email: document.getElementById('email').value,
-            user_code: document.getElementById('user_code').value,
+            code: document.getElementById('code').value,
         }
 
         let data = JSON.stringify(inputValues);

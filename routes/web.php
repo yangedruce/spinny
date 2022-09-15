@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Admin\UserCodeController as AdminUserCodeController;
+use App\Http\Controllers\Admin\SpinCodeController as AdminSpinCodeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PrizeController as AdminPrizeController;
 use App\Http\Controllers\Admin\GrandPrizeWinnerController as AdminGrandPrizeWinnerController;
 use App\Http\Controllers\Admin\PrizeWinnerController as AdminPrizeWinnerController;
-use App\Http\Controllers\Admin\UsersCodeExportController as AdminUsersCodeExportController;
-use App\Http\Controllers\Admin\PrizesCodeExportController as AdminPrizesCodeExportController;
+use App\Http\Controllers\Admin\SpinCodesExportController as AdminSpinCodesExportController;
+use App\Http\Controllers\Admin\PrizesExportController as AdminPrizesExportController;
 use App\Http\Controllers\Admin\PrizeWinnersExportController as AdminPrizeWinnersExportController;
 use App\Http\Controllers\Admin\GrandPrizeWinnersExportController as AdminGrandPrizeWinnersExportController;
-use App\Http\Controllers\Admin\UsersCodeImportController as AdminUsersCodeImportController;
-use App\Http\Controllers\Admin\PrizesCodeImportController as AdminPrizesCodeImportController;
+use App\Http\Controllers\Admin\SpinCodesImportController as AdminSpinCodesImportController;
+use App\Http\Controllers\Admin\PrizesImportController as AdminPrizesImportController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Helper;
 use Illuminate\Support\Facades\Route;
@@ -47,15 +47,15 @@ Route::group([
     'namespace' => 'Admin',
     'middleware' => ['auth']
 ], function () {
-    Route::get('/usercode/index', [AdminUserCodeController::class, 'index'])->name('admin.usercode.index');
-    Route::post('/usercode/export', [AdminUsersCodeExportController::class, 'export'])->name('admin.usercode.export');
-    Route::get('/usercode/import/show', [AdminUsersCodeImportController::class, 'show'])->name('admin.usercode.import.show');
-    Route::post('/usercode/import/store', [AdminUsersCodeImportController::class, 'store'])->name('admin.usercode.import.store');
+    Route::get('/spin-code/index', [AdminSpinCodeController::class, 'index'])->name('admin.spin.code.index');
+    Route::post('/spin-code/export', [AdminSpinCodesExportController::class, 'export'])->name('admin.spin.code.export');
+    Route::get('/spin-code/import/show', [AdminSpinCodesImportController::class, 'show'])->name('admin.spin.code.import.show');
+    Route::post('/spin-code/import/store', [AdminSpinCodesImportController::class, 'store'])->name('admin.spin.code.import.store');
 
     Route::get('/prize/index', [AdminPrizeController::class, 'index'])->name('admin.prize.index');
-    Route::post('/prize/export', [AdminPrizesCodeExportController::class, 'export'])->name('admin.prize.export');
-    Route::get('/prize/import/show', [AdminPrizesCodeImportController::class, 'show'])->name('admin.prize.import.show');
-    Route::post('/prize/import/store', [AdminPrizesCodeImportController::class, 'store'])->name('admin.prize.import.store');
+    Route::post('/prize/export', [AdminPrizesExportController::class, 'export'])->name('admin.prize.export');
+    Route::get('/prize/import/show', [AdminPrizesImportController::class, 'show'])->name('admin.prize.import.show');
+    Route::post('/prize/import/store', [AdminPrizesImportController::class, 'store'])->name('admin.prize.import.store');
 
     Route::get('/prize-winner/index', [AdminPrizeWinnerController::class, 'index'])->name('admin.prize.winner.index');
     Route::post('/prize-winner/export', [AdminPrizeWinnersExportController::class, 'export'])->name('admin.prize.winner.export');

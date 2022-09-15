@@ -15,11 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('admin.usercode.index')" :active="request()->routeIs('admin.usercode.index')">
-                        {{ __('Users Code') }}
+                    <x-nav-link :href="route('admin.spin.code.index')" :active="request()->routeIs('admin.spin.code.index')">
+                        {{ __('Spin Code') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.prize.index')" :active="request()->routeIs('admin.prize.index')">
-                        {{ __('Prizes Code') }}
+                        {{ __('Prizes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.prize.winner.index')" :active="request()->routeIs('admin.prize.winner.index')">
                         {{ __('Prize Winners') }}
@@ -78,11 +78,11 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.usercode.index')" :active="request()->routeIs('admin.usercode.index')">
-                {{ __('Users Code') }}
+            <x-responsive-nav-link :href="route('admin.spin.code.index')" :active="request()->routeIs('admin.spin.code.index')">
+                {{ __('Spin Codes') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.prize.index')" :active="request()->routeIs('admin.prize.index')">
-                {{ __('Prizes Code') }}
+                {{ __('Prizes') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('admin.prize.winner.index')" :active="request()->routeIs('admin.prize.winner.index')">
                 {{ __('Prize Winners') }}

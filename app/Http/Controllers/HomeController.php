@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prize;
 use App\Models\PrizeWinner;
-use App\Models\UserCode;
+use App\Models\SpinCode;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -50,7 +50,7 @@ class HomeController extends Controller
         $winMessage = null;
         $currentPrizeWinner = $this->getCurrentPrizeWinner();
         if ($currentPrizeWinner != null) {
-            $prizeName = $currentPrizeWinner->prize->prize_name;
+            $prizeName = $currentPrizeWinner->prize->name;
 
             $winMessage = __('You have won').' '.$prizeName;
         }
@@ -128,7 +128,7 @@ class HomeController extends Controller
         $jsonResponse = $this->convertToJson($request);
 
         $email = $jsonResponse['email'];
-        $code = $jsonResponse['user_code'];
+        $code = $jsonResponse['code'];
 
         $isCodeValid = $this->checkCodeValidity($email, $code);
 
@@ -139,17 +139,17 @@ class HomeController extends Controller
             $winningPrize->remaining = $winningPrize->remaining - 1;
             $winningPrize->update();
 
-            $userCode = UserCode::where('email', $email)->where('user_code', $code)->first();
+            $spinCode = SpinCode::where('email', $email)->where('code', $code)->first();
 
-            // Update user code.
-            $userCode->validation = true;
-            $userCode->update();
+            // Update spin code.
+            $spinCode->validation = true;
+            $spinCode->update();
 
 
             // Add prize winner
             $prizeWinner = PrizeWinner::create([
                 'shared' => false,
-                'user_code_id' => $userCode->id,
+                'spin_code_id' => $spinCode->id,
                 'prize_id' => $winningPrize->id,
             ]);
 
@@ -190,7 +190,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Check if user code is valid.
+     * Check if code is valid.
      *
      * @return bool $isCodeUnused
      */
@@ -198,11 +198,11 @@ class HomeController extends Controller
     {
         $isCodeValid = false;
 
-        $userCode = UserCode::where('email', $email)->where('user_code', $code)->first();
+        $spinCode = SpinCode::where('email', $email)->where('code', $code)->first();
 
-        if ($userCode != null) {
-            $prizeWinner = PrizeWinner::where('user_code_id', $userCode->id)->first();
-            if(! $userCode->validation && $prizeWinner == null){
+        if ($spinCode != null) {
+            $prizeWinner = PrizeWinner::where('spin_code_id', $spinCode->id)->first();
+            if (! $spinCode->validation && $prizeWinner == null) {
                 $prizes = Prize::where('remaining', '>', 0)->first();
                 ($prizes != null)
                     ? $isCodeValid = true

@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class PrizesCodeExport implements FromCollection, WithHeadings, ShouldAutoSize
+class PrizesExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     use Exportable;
 
@@ -25,8 +25,8 @@ class PrizesCodeExport implements FromCollection, WithHeadings, ShouldAutoSize
         foreach ($this->prizes as $prize) {
             $output[] = [
                 $prize->id,
-                $prize->prize_code,
-                $prize->prize_name,
+                $prize->code,
+                $prize->name,
                 $prize->total_count,
                 $prize->remaining,
             ];
@@ -39,8 +39,8 @@ class PrizesCodeExport implements FromCollection, WithHeadings, ShouldAutoSize
     {
         return [
             'id',
-            'prize_code',
-            'prize_name',
+            'code',
+            'name',
             'total_count',
             'remaining',
         ];

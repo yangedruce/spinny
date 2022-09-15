@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Imports\SpinCodesImport;
 use App\Http\Controllers\Controller;
-use App\Imports\PrizesCodeImport;
-use App\Models\Prize;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class PrizesCodeImportController extends Controller
+class SpinCodesImportController extends Controller
 {
     public function show()
     {
-        return view('admin.prize.import.show');
+        return view('admin.spin-code.import.show');
     }
 
     public function store(Request $request)
@@ -21,9 +20,8 @@ class PrizesCodeImportController extends Controller
 
         $extension = $file->extension();
 
-        if ($extension == 'xlsx' || $extension == 'xls') 
-        {
-            Excel::import(new PrizesCodeImport(), $file);
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            Excel::import(new SpinCodesImport(), $file);
             $importError = false;
             if (session()->get('importError') != null) {
                 $importError = session()->get('importError');
@@ -33,11 +31,9 @@ class PrizesCodeImportController extends Controller
             } else {
                 $request->session()->flash('status', 'File imported successfully.');
 
-                return redirect()->route('admin.prize.index');
+                return redirect()->route('admin.spin.code.index');
             }
-        }
-        else 
-        {
+        } else {
             return redirect()->back()->withErrors('File extension must be in .xls or .xlsx');
         }
     }

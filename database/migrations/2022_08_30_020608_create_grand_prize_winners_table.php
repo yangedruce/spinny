@@ -17,7 +17,7 @@ class CreateGrandPrizeWinnersTable extends Migration
             $table->id();
             $table->integer('month');
 
-            $table->foreignId('user_code_id')
+            $table->foreignId('spin_code_id')
                 ->constrained()
                 ->onDelete('cascade');
             
@@ -41,7 +41,7 @@ class CreateGrandPrizeWinnersTable extends Migration
     public function down()
     {
         Schema::table('grand_prize_winners', function (Blueprint $table) {
-            $table->dropForeign(['user_code_id']);
+            $table->dropForeign(['spin_code_id']);
             $table->dropForeign(['prize_winner_id']);
         });
 

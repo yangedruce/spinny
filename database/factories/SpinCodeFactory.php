@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Prize;
+use App\Models\SpinCode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PrizeFactory extends Factory
+class SpinCodeFactory extends Factory
 {
-    protected $model = Prize::class;
+    protected $model = SpinCode::class;
 
     /**
      * Define the model's default state.
@@ -18,9 +18,7 @@ class PrizeFactory extends Factory
     {
         return [
             'code' => $this->faker->randomNumber(6),
-            'name' => $this->faker->name,
-            'total_count' => $this->faker->randomNumber(3),
-            'remaining' => $this->faker->randomNumber(2),
+            'validation' => false,
         ];
     }
 }

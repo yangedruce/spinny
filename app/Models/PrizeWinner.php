@@ -11,7 +11,7 @@ class PrizeWinner extends Model
 
     protected $fillable = [
         'shared',
-        'user_code_id',
+        'spin_code_id',
         'prize_id',
     ];
 
@@ -20,8 +20,8 @@ class PrizeWinner extends Model
         return $this->belongsTo(Prize::class, 'prize_id', 'id');
     }
 
-    public function usercode()
+    public function spinCode()
     {
-        return $this->belongsTo(UserCode::class, 'user_code_id', 'id');
+        return $this->belongsTo(SpinCode::class, 'spin_code_id', 'id');
     }
 }

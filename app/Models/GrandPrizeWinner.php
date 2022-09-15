@@ -15,8 +15,8 @@ class GrandPrizeWinner extends Model
         'prize_winner_id'
     ];
 
-    public function usercode()
+    public function spinCode()
     {
-        return $this->belongsTo(UserCode::class, 'user_code_id', 'id');
+        return $this->belongsTo(SpinCode::class, 'spin_code_id', 'id');
     }
 }

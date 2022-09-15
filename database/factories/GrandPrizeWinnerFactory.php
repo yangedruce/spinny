@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\UserCode;
+use App\Models\SpinCode;
 use App\Models\PrizeWinner;
 use App\Models\GrandPrizeWinner;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,7 +20,7 @@ class GrandPrizeWinnerFactory extends Factory
     {
         return [
             'month' => $this->faker->month,
-            'user_code_id' => UserCode::factory()->create()->id,
+            'spin_code_id' => SpinCode::factory()->create()->id,
             'prize_winner_id' => PrizeWinner::factory()->create()->id,
         ];
     }

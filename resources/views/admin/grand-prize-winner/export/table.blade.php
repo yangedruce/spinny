@@ -48,16 +48,16 @@
                         {{ ++$no }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ $grandprizewinner->usercode->user_code }}
+                        {{ $grandprizewinner->spinCode->code }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $grandprizewinner->usercode->name }}
+                        {{ $grandprizewinner->spinCode->name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $grandprizewinner->usercode->phone }}
+                        {{ $grandprizewinner->spinCode->phone }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $grandprizewinner->usercode->email }}
+                        {{ $grandprizewinner->spinCode->email }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{ date('F', strtotime(date('Y').'/'.$grandprizewinner->month.'/'.date('d'))) }}

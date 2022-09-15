@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserCode;
+use App\Models\SpinCode;
 use App\Models\Prize;
 use App\Models\PrizeWinner;
 use App\Models\GrandPrizeWinner;
@@ -19,11 +19,9 @@ class DashboardController extends Controller
     public function index()
     {
         $prizes = Prize::all();
-        $maxMonth = date('n');
 
         return view('admin.index', [
             'prizes' => $prizes,
-            'maxMonth' => $maxMonth,
         ]);
     }
 
@@ -45,7 +43,9 @@ class DashboardController extends Controller
         $selectedMonth = $jsonResponse['month'];
         $grandPrizeWinners = GrandPrizeWinner::where('month', $selectedMonth)->first();
 
-        if ($grandPrizeWinners == null) {
+        $maxMonthWinner = 8;
+
+        if ($grandPrizeWinners == null || count($grandPrizeWinners) <= $maxMonthWinner) {
             $eligiblePrizeWinners = PrizeWinner::where('shared', true)
                                         ->whereYear('created_at', '=', date('Y'))
                                         ->whereMonth('created_at', '=', $selectedMonth)
@@ -54,7 +54,7 @@ class DashboardController extends Controller
                 ? $selectedMonthStatus = true
                 : session()->put('errorMessage', __('No eligible prize winners for selected month!'));
         } else {
-            session()->put('errorMessage', __('Selected month already have a grand prize winner!'));
+            session()->put('errorMessage', __('Selected month already exceeded grand prize winner!'));
         }
 
         return ['selectedMonthStatus' => $selectedMonthStatus];
@@ -100,21 +100,21 @@ class DashboardController extends Controller
         foreach ($eligiblePrizeWinners as $index => $eligiblePrizeWinner) {
             if ($index == $randomGrandPrizeWinner) {
                 $winner = $eligiblePrizeWinner;
-                $winnerName = $winner->usercode->name;
+                $winnerName = $winner->spinCode->name;
 
                 $message = __('Grand prize winner for month').' '.date('F', strtotime(date('Y').'/'.$selectedMonth.'/'.date('d')));
             }
         }
 
-        $userCodes = UserCode::all();
-        foreach ($userCodes as $userCode) {
-            array_push($eligibleNames, $userCode->name);
+        $spinCodes = SpinCode::all();
+        foreach ($spinCodes as $spinCode) {
+            array_push($eligibleNames, $spinCode->name);
         }
 
         if ($winner != null) {
             $grandPrizeWinner = GrandPrizeWinner::create([
                 'month' => $selectedMonth,
-                'user_code_id' => $winner->usercode->id,
+                'spin_code_id' => $winner->spinCode->id,
                 'prize_winner_id' => $winner->id,
             ]);
         }

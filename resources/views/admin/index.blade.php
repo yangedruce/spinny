@@ -13,10 +13,11 @@
                 <div class="flex gap-4 mt-4">
                     <select name="" id="month"
                         class="w-full border-gray-300 focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50">
-                        @for ($currentMonth = 1; $currentMonth < $maxMonth; $currentMonth++) <option
-                            value="{{ $currentMonth }}">{{
-                            date('F', strtotime(date('Y').'/'.$currentMonth.'/'.date('d'))) }}</option>
-                            @endfor
+                        <option value="8">August</option> {{-- Testing --}}
+                        <option value="9">September</option> {{-- Testing --}}
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                     <button type="button"
                         class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out border border-transparent bg-rose-800 hover:bg-rose-700 active:bg-rose-900 focus:outline-none focus:border-rose-900 focus:ring ring-rose-300 disabled:opacity-25"

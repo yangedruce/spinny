@@ -3,13 +3,13 @@
         <div class="flex items-center justify-between px-6 py-2">
             <h6 class="text-base font-semibold tracking-widest uppercase">{{ $title ?? "" }}</h6>
             <div class="flex items-center">
-                @if (Route::is('admin.usercode.index'))
-                <a href="{{ route('admin.usercode.import.show') }}">
+                @if (Route::is('admin.spin.code.index'))
+                <a href="{{ route('admin.spin.code.import.show') }}">
                     <x-button class="mr-2">
                         {{ __('Import') }}
                     </x-button>
                 </a>
-                <form method="POST" action="{{ route('admin.usercode.export') }}">
+                <form method="POST" action="{{ route('admin.spin.code.export') }}">
                     @method('POST')
                     @csrf
                     <x-button>
@@ -76,7 +76,7 @@
                         Prize
                     </th>
                 </tr>
-                @elseif (Route::is('admin.usercode.index'))
+                @elseif (Route::is('admin.spin.code.index'))
                 <tr>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
@@ -84,9 +84,9 @@
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
-                        User Code
+                        Code
                     </th>
-                    <th scope="col"
+                    {{-- <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
                         Name
                     </th>
@@ -101,7 +101,7 @@
                     <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
                         Redemption Status
-                    </th>
+                    </th> --}}
                 </tr>
                 @elseif (Route::is('admin.prize.index'))
                 <tr>
@@ -136,16 +136,16 @@
                         {{ ++$no }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $grandprizewinner->usercode->user_code }}
+                        {{ $grandprizewinner->spinCode->code }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $grandprizewinner->usercode->name }}
+                        {{ $grandprizewinner->spinCode->name }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $grandprizewinner->usercode->phone }}
+                        {{ $grandprizewinner->spinCode->phone }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $grandprizewinner->usercode->email }}
+                        {{ $grandprizewinner->spinCode->email }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {{ date('F', strtotime(date('Y').'/'.$grandprizewinner->month.'/'.date('d'))) }}
@@ -163,10 +163,10 @@
                         {{ ++$no }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $prizeWinner->usercode->user_code }}
+                        {{ $prizeWinner->spinCode->code }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $prizeWinner->prize->prize_name }}
+                        {{ $prizeWinner->prize->name }}
                     </td>
                 </tr>
                 @empty
@@ -174,27 +174,27 @@
                     <td colspan="5" class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">No Record Found</td>
                 </tr>
                 @endforelse
-                @elseif (Route::is('admin.usercode.index'))
-                @forelse($usercodes ?? [] as $no => $usercode)
+                @elseif (Route::is('admin.spin.code.index'))
+                @forelse($spinCodes ?? [] as $no => $spinCode)
                 <tr>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
                         {{ ++$no }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $usercode->user_code }}
+                        {{ $spinCode->code }}
+                    </td>
+                    {{-- <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        {{ $spinCode->name }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $usercode->name }}
+                        {{ $spinCode->phone }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $usercode->phone }}
+                        {{ $spinCode->email }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $usercode->email }}
-                    </td>
-                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $usercode->validation ? 'Redeemed' : 'Not Redeemed' }}
-                    </td>
+                        {{ $spinCode->validation ? 'Redeemed' : 'Not Redeemed' }}
+                    </td> --}}
                 </tr>
                 @empty
                 <tr>
@@ -208,10 +208,10 @@
                         {{ ++$no }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
-                        {{ $prize->prize_code }}
+                        {{ $prize->code }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $prize->prize_name }}
+                        {{ $prize->name }}
                     </td>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
                         {{ $prize->total_count }}
@@ -233,8 +233,8 @@
             {!! $grandprizewinners->links() !!}
             @elseif (Route::is('home.leaderboard'))
             {!! $prizeWinners->links() !!}
-            @elseif (Route::is('admin.usercode.index'))
-            {!! $usercodes->links() !!}
+            @elseif (Route::is('admin.spin.code.index'))
+            {!! $spinCodes->links() !!}
             @elseif (Route::is('admin.prize.index'))
             {!! $prizes->links() !!}
             @endif

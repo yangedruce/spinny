@@ -5,24 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UserCode extends Model
+class SpinCode extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_code',
-        'name',
-        'phone',
-        'email',
+        'code',
         'validation',
     ];
 
-    public function prizewinners()
+    public function prizeWinners()
     {
         return $this->hasMany(PrizeWinner::class);
     }
 
-    public function grandprizewinners()
+    public function grandPrizeWinners()
     {
         return $this->hasMany(GrandPrizeWinner::class);
     }

@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\UserCode;
+use App\Models\SpinCode;
 use Illuminate\Database\Seeder;
 
-class UserCodeSeeder extends Seeder
+class SpinCodeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class UserCodeSeeder extends Seeder
      */
     public function run()
     {
-        UserCode::factory()->count(30)->create();
+        SpinCode::factory()->count(30)->create();
     }
 }

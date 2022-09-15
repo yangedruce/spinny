@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserCode;
+use App\Models\SpinCode;
 use Illuminate\Http\Request;
 
-class UserCodeController extends Controller
+class SpinCodeController extends Controller
 {
     public function index()
     {
-        $usercodes = UserCode::paginate(10);
+        $spinCodes = SpinCode::paginate(10);
 
         if (session('status') != null) {
             session()->flash('status', session('status'));
@@ -21,8 +21,8 @@ class UserCodeController extends Controller
         // //testing
         // session()->flash('status', 'File imported successfully');
 
-        return view('admin.usercode.index', [
-            'usercodes' => $usercodes,
+        return view('admin.spin-code.index', [
+            'spinCodes' => $spinCodes,
         ]);
     }
 }

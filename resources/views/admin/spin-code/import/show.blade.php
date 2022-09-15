@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action="{{ route('admin.usercode.import.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.spin.code.import.store') }}" method="POST" enctype="multipart/form-data">
                 @method('POST')
                 @csrf
 

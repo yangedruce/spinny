@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Imports\UsersCodeImport;
-use App\Models\UserCode;
 use App\Http\Controllers\Controller;
+use App\Imports\PrizesImport;
+use App\Models\Prize;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
-class UsersCodeImportController extends Controller
+class PrizesImportController extends Controller
 {
     public function show()
     {
-        return view('admin.usercode.import.show');
+        return view('admin.prize.import.show');
     }
 
     public function store(Request $request)
@@ -21,9 +21,8 @@ class UsersCodeImportController extends Controller
 
         $extension = $file->extension();
 
-        if ($extension == 'xlsx' || $extension == 'xls') 
-        {
-            Excel::import(new UsersCodeImport(), $file);
+        if ($extension == 'xlsx' || $extension == 'xls') {
+            Excel::import(new PrizesImport(), $file);
             $importError = false;
             if (session()->get('importError') != null) {
                 $importError = session()->get('importError');
@@ -33,11 +32,9 @@ class UsersCodeImportController extends Controller
             } else {
                 $request->session()->flash('status', 'File imported successfully.');
 
-                return redirect()->route('admin.usercode.index');
+                return redirect()->route('admin.prize.index');
             }
-        } 
-        else 
-        {
+        } else {
             return redirect()->back()->withErrors('File extension must be in .xls or .xlsx');
         }
     }
