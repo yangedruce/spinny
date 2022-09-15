@@ -1,26 +1,26 @@
 <x-guest-layout>
     <div class="h-screen">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-2 items-center justify-center">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white">
+                <div class="grid items-center justify-center grid-cols-1 lg:grid-cols-2">
+
                     <div class="p-6">
-                        <x-auth-session-status class="mb-4" :status="session('status')" />
-                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-                        @include('home.partials.form')
+                        @include('home.partials.form', ['id' => 'spinForm'])
                     </div>
-                    <div class="p-6">
-                        @include('home.partials.wheel')
+
+                    @if(count($prizes) > 0)
+                    <div class="flex justify-center p-16 relative">
+                        @include('home.partials.wheel', ['id' => 'wheel'])
                     </div>
+                    @endif
                 </div>
 
-                <div class="my-8 flex justify-center items-center">
-                    <x-modal></x-modal>
-                </div>
-
-                <div class="mb-8">
-                    <x-table :title='"Leaderboard User"' :prizewinners="$prizewinners"></x-table>
+                <div class="items-center justify-center my-8">
+                    @include('home.partials.prize')
                 </div>
             </div>
         </div>
     </div>
+
+    @include('home.partials.scripts.home-script')
 </x-guest-layout>

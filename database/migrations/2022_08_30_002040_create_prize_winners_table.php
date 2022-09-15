@@ -15,9 +15,7 @@ class CreatePrizeWinnersTable extends Migration
     {
         Schema::create('prize_winners', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
             $table->boolean('shared')->nullable()->default(false);
-            $table->timestamps();
 
             $table->foreignId('user_code_id')
                 ->constrained()
@@ -26,6 +24,9 @@ class CreatePrizeWinnersTable extends Migration
             $table->foreignId('prize_id')
                 ->constrained()
                 ->onDelete('cascade');
+
+            $table->timestamps();
+
         });
     }
 

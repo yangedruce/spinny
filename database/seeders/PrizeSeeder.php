@@ -14,6 +14,6 @@ class PrizeSeeder extends Seeder
      */
     public function run()
     {
-        Prize::factory()->count(30)->create();
+        Prize::factory()->count(10)->create();
     }
 }

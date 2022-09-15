@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\GrandPrizeWinnersExportController as AdminGrandPr
 use App\Http\Controllers\Admin\UsersCodeImportController as AdminUsersCodeImportController;
 use App\Http\Controllers\Admin\PrizesCodeImportController as AdminPrizesCodeImportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Helper;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +27,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/leaderboard', [HomeController::class, 'showLeaderboard'])->name('home.leaderboard');
+
+Route::get('/get/prize', [HomeController::class, 'getPrize'])->name('home.get.prize');
+Route::get('/get/message/win', [HomeController::class, 'getMessageWin'])->name('home.get.message.win');
+Route::get('/get/message/error', [HomeController::class, 'getMessageError'])->name('home.get.message.error');
+Route::get('/get/spinner', [HomeController::class, 'getSpinnerStatus'])->name('home.get.spinner');
+
+Route::post('/post/form', [HomeController::class, 'postForm'])->name('home.post.form');
+Route::post('/post/currentPrizeWinner', [HomeController::class, 'postCurrentPrizeWinner'])->name('home.update.postCurrentPrizeWinner');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard/get/message/error', [DashboardController::class, 'getMessageError'])->name('dashboard.get.message.error');
+Route::post('/dashboard/post/checkSelectedMonth', [DashboardController::class, 'checkSelectedMonth'])->middleware(['auth'])->name('dashboard.post.checkCurrentMonth');
+Route::post('/dashboard/post/setGrandPrizeWinner', [DashboardController::class, 'setGrandPrizeWinner'])->middleware(['auth'])->name('dashboard.post.setGrandPrizeWinner');
 
 Route::group([
     'prefix' => 'admin',

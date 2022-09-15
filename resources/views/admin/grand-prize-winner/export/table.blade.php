@@ -57,10 +57,10 @@
                         {{ $grandprizewinner->usercode->phone }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $grandprizewinner->email }}
+                        {{ $grandprizewinner->usercode->email }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $grandprizewinner->month }}
+                        {{ date('F', strtotime(date('Y').'/'.$grandprizewinner->month.'/'.date('d'))) }}
                     </td>
                 </tr>
                 @empty

@@ -10,7 +10,6 @@ class PrizeWinner extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email',
         'shared',
         'user_code_id',
         'prize_id',

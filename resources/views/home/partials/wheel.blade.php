@@ -1,14 +1,18 @@
-<div id="divWheel" data-wheelnav data-wheelnav-marker data-wheelnav-markerpath="DropMarker"
-    data-wheelnav-slicepath="DonutSlice"
-    data-wheelnav-colors="#c4b5fd, #fecdd3, #f9a8d4, #fde68a, #dcfce7, #a5f3fc, #fdba74, #f5d0fe, #67e8f9"
-    class="flex justify-center">
-    <div data-wheelnav-navitemtext="1"></div>
-    <div data-wheelnav-navitemtext="2"></div>
-    <div data-wheelnav-navitemtext="3"></div>
-    <div data-wheelnav-navitemtext="4"></div>
-    <div data-wheelnav-navitemtext="5"></div>
-    <div data-wheelnav-navitemtext="6"></div>
-    <div data-wheelnav-navitemtext="7"></div>
-    <div data-wheelnav-navitemtext="8"></div>
-    <div data-wheelnav-navitemtext="9"></div>
+{{--
+
+<div class="flex justify-center lg:mt-28">
+    <div id="spinTheWheel">
+    </div>
+</div> --}}
+<div class="relative">
+
+    <div class="absolute h-12 bg-black w-5 top-0" style="
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            left: calc(300px - 10px);
+            top: -0.5rem;"></div>
+
+    <canvas id="{{ $id }}" width="600" height="500" data-responsiveMinWidth="320" data-responsiveScaleHeight="true"
+        data-responsiveMargin="16">
+        Canvas not supported, use another browser.
+    </canvas>
 </div>

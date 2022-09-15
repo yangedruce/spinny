@@ -10,9 +10,9 @@ class GrandPrizeWinner extends Model
     use HasFactory;
 
     protected $fillable = [
-        'email',
         'month',
         'user_code_id',
+        'prize_winner_id'
     ];
 
     public function usercode()

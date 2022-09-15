@@ -19,7 +19,6 @@ class PrizeWinnerFactory extends Factory
     public function definition()
     { 
         return [
-            'email' => $this->faker->email,
             'shared' => $this->faker->boolean,
             'user_code_id' => UserCode::factory()->create()->id,
             'prize_id' => Prize::factory()->create()->id,

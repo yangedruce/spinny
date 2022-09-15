@@ -15,13 +15,21 @@ class CreateGrandPrizeWinnersTable extends Migration
     {
         Schema::create('grand_prize_winners', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
             $table->integer('month');
-            $table->timestamps();
 
             $table->foreignId('user_code_id')
                 ->constrained()
                 ->onDelete('cascade');
+            
+            $table->foreignId('prize_winner_id')
+                ->constrained()
+                ->onDelete('cascade');
+            
+
+
+            $table->timestamps();
+
+
         });
     }
 
@@ -34,6 +42,7 @@ class CreateGrandPrizeWinnersTable extends Migration
     {
         Schema::table('grand_prize_winners', function (Blueprint $table) {
             $table->dropForeign(['user_code_id']);
+            $table->dropForeign(['prize_winner_id']);
         });
 
         Schema::dropIfExists('grand_prize_winners');
