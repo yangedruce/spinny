@@ -36,6 +36,7 @@
                     'numSegments' : prize.length,
                     'segments' : segments,
                     'fillStyle' : '#fecdd3',
+                    'responsive'   : true,
                     'lineWidth' : 1,
                     'animation' :
                     {
@@ -51,44 +52,12 @@
                         'number'     : prize.length,
                         'fillStyle'  : 'silver',
                         'outerRadius': 4,
+                        'responsive' : true,
                     }
                 });
-
-                checkSpinnerStatus();
             }
         }
     } 
-
-    // --------------------------------------------------
-    // Check spinner status.
-    // --------------------------------------------------
-    const checkSpinnerStatus = () => {
-        let spinnerStatus = false;
-        // Ajax get current prize winner.
-        const url = `${window.location.protocol}//${window.location.hostname}/get/spinner`;
-        
-        let xhr = new XMLHttpRequest()
-        xhr.open('GET', url, true)
-        xhr.setRequestHeader('X-CSRF-TOKEN', token);
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        xhr.send();
-        
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                let response = JSON.parse(xhr.responseText);
-                spinnerStatus = response['spinnerStatus'];
-                prizeIndex = response['prizeIndex'];
-
-                if (spinnerStatus && prizeIndex != null) {
-                    stopAt = wheel.getRandomForSegment(prizeIndex);
-                    wheel.animation.stopAngle = stopAt;
-                    wheel.animation.duration = 0;
-                    triggerWheelSpin();
-                }
-            }
-        }
-    }
 
     // --------------------------------------------------
     // Form submission.
@@ -113,6 +82,7 @@
         // Get input values.
         let inputValues = {
             _token: token,
+            name: document.getElementById('name').value,
             email: document.getElementById('email').value,
             code: document.getElementById('code').value,
         }
@@ -150,21 +120,44 @@
     // Trigger wheel spin.
     // --------------------------------------------------
     const triggerWheelSpin = () => {
+
+        // Ajax get winning prize.
+        const url = `${window.location.protocol}//${window.location.hostname}/get/prize-winner`;
         
-        // Scroll to wheel if wheel is not in view.
-        if (window.scrollY < document.getElementById('wheel').getBoundingClientRect().top) document.getElementById('wheel').scrollIntoView(); 
+        let xhr = new XMLHttpRequest()
+        xhr.open('GET', url, true)
+        xhr.setRequestHeader('X-CSRF-TOKEN', token);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send();
+        
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                let response = xhr.responseText;
+                let formErrorMessage = document.getElementById("formErrorMessage");
+                formErrorMessage.innerHTML = '';
+                
+                // Scroll to wheel if wheel is not in view.
+                if (window.scrollY < document.getElementById('wheel').getBoundingClientRect().top) document.getElementById('wheel').scrollIntoView(); 
 
-        // Set Spin the Wheel button unclickable.
-        let spinFormButton = document.getElementById('spinFormButton');
-        spinFormButton.style.pointerEvents = 'none';
+                // Set Spin the Wheel button unclickable.
+                let spinFormButton = document.getElementById('spinFormButton');
+                spinFormButton.style.pointerEvents = 'none';
 
-        // Set all inputs unclicakble
-        let inputs = form.querySelectorAll('input')
-        for (let i = 0; i < inputs.length; i++) {
-            inputs[i].style.pointerEvents = 'none';
+                // Set all inputs unclicakble.
+                let inputs = form.querySelectorAll('input')
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].style.pointerEvents = 'none';
+                }
+
+                wheel.startAnimation();
+
+                setTimeout(() => {
+                    let leaderboard = document.getElementById('leaderboardContainer');
+                    leaderboard.innerHTML = response;
+                }, 5000);
+            }
         }
-
-        wheel.startAnimation();
     }
 
     // --------------------------------------------------
@@ -196,6 +189,15 @@
     const showPrizeModal = () => {
         let prizeModal = document.getElementById("prizeModal");
         let modalWinMessage = document.getElementById("modalWinMessage");
+
+        // Set Spin the Wheel button clickable.
+        let spinFormButton = document.getElementById('spinFormButton');
+        spinFormButton.style.pointerEvents = 'initial';
+        
+        // Set all inputs clickable.
+        let inputs = form.querySelectorAll('input')
+        for (let i = 0; i < inputs.length; i++) { inputs[i].style.pointerEvents='initial' ; }
+
         // Ajax get winning prize.
         const url = `${window.location.protocol}//${window.location.hostname}/get/message/win`;
         
@@ -210,6 +212,7 @@
             if (xhr.status === 200) {
                 let response = JSON.parse(xhr.responseText);
                 prizeModal.classList.remove('hidden');
+                prizeModal.classList.add('flex');
                 modalWinMessage.innerHTML = response['winMessage'];
             }
         }
@@ -257,7 +260,7 @@
         let data = JSON.stringify(inputValues);
         
         // AJAX to set prize winner sharing
-        const url = `${window.location.protocol}//${window.location.hostname}/post/currentPrizeWinner`;
+        const url = `${window.location.protocol}//${window.location.hostname}/post/current-prize-winner`;
         let xhr = new XMLHttpRequest()
         
         xhr.open('POST', url, true)
@@ -266,11 +269,13 @@
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.send(data);
+    }
 
-        // xhr.onload = function () {
-        //     if (xhr.status === 200) {
-        //         let response = JSON.parse(xhr.responseText);
-        //     }
-        // }
+    const closePrizeModal = () => {
+        let prizeModal = document.getElementById("prizeModal");
+        prizeModal.classList.add('hidden');
+        prizeModal.classList.remove('flex');
+        wheel.rotationAngle = 0;
+        wheel.draw();
     }
 </script>

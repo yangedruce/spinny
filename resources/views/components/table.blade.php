@@ -61,7 +61,7 @@
                         Month
                     </th>
                 </tr>
-                @elseif (Route::is('home.leaderboard'))
+                @elseif (Route::is('home.index'))
                 <tr>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
@@ -86,22 +86,10 @@
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
                         Code
                     </th>
-                    {{-- <th scope="col"
-                        class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
-                        Name
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
-                        Phone
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
-                        Email
-                    </th>
                     <th scope="col"
                         class="px-6 py-3 text-xs font-bold tracking-wider text-left text-gray-900 uppercase">
                         Redemption Status
-                    </th> --}}
+                    </th>
                 </tr>
                 @elseif (Route::is('admin.prize.index'))
                 <tr>
@@ -156,7 +144,7 @@
                     <td colspan="5" class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">No Record Found</td>
                 </tr>
                 @endforelse
-                @elseif (Route::is('home.leaderboard'))
+                @elseif (Route::is('home.index'))
                 @forelse($prizeWinners ?? [] as $no => $prizeWinner)
                 <tr>
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
@@ -183,18 +171,9 @@
                     <td class="px-6 py-4 text-sm text-gray-500 uppercase whitespace-nowrap">
                         {{ $spinCode->code }}
                     </td>
-                    {{-- <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $spinCode->name }}
-                    </td>
-                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $spinCode->phone }}
-                    </td>
-                    <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                        {{ $spinCode->email }}
-                    </td>
                     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                         {{ $spinCode->validation ? 'Redeemed' : 'Not Redeemed' }}
-                    </td> --}}
+                    </td>
                 </tr>
                 @empty
                 <tr>
@@ -231,7 +210,7 @@
         <div class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
             @if (Route::is('dashboard'))
             {!! $grandprizewinners->links() !!}
-            @elseif (Route::is('home.leaderboard'))
+            @elseif (Route::is('home.index'))
             {!! $prizeWinners->links() !!}
             @elseif (Route::is('admin.spin.code.index'))
             {!! $spinCodes->links() !!}

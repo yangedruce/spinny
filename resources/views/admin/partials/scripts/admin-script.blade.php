@@ -52,7 +52,7 @@
         let data = JSON.stringify(inputValues);
 
         // Ajax set winning prize.
-        const url = `${window.location.protocol}//${window.location.hostname}/dashboard/post/checkSelectedMonth`;
+        const url = `${window.location.protocol}//${window.location.hostname}/dashboard/post/check-selected-month`;
 
         let xhr = new XMLHttpRequest()
         xhr.open('POST', url, true)
@@ -87,7 +87,7 @@
         let data = JSON.stringify(inputValues);
 
         // Ajax set winning prize.
-        const url = `${window.location.protocol}//${window.location.hostname}/dashboard/post/setGrandPrizeWinner`;
+        const url = `${window.location.protocol}//${window.location.hostname}/dashboard/post/set-grand-prize-winner`;
 
         let xhr = new XMLHttpRequest()
         xhr.open('POST', url, true)
@@ -118,12 +118,19 @@
                 }, 50);
                 
                 setTimeout(() => {
+
+                    let grandPrizeModalBackdrop = document.getElementById("grandPrizeModalBackdrop");
+                    let grandPrizeModalClose = document.getElementById("grandPrizeModalClose");
+
+                    grandPrizeModalBackdrop.setAttribute('onclick', 'closeGrandPrizeModal()');
+                    grandPrizeModalClose.setAttribute('onclick', 'closeGrandPrizeModal()');
+                    
                     modalWinMessage.innerHTML = message;
                     modalWinner.innerHTML = winnerName;
                     viewGrandPrizeWInner.classList.remove('hidden');
                     viewGrandPrizeWInner.classList.add('flex');
                     clearInterval(randomized);
-                }, 4000);
+                }, 2500);
             }
         }
     }
@@ -149,5 +156,14 @@
                 errorMessage.innerHTML = response['errorMessage'];
             }
         }
+    }
+
+    // --------------------------------------------------
+    // Close grand prize modal.
+    // --------------------------------------------------
+    const closeGrandPrizeModal = () => {
+        let grandPrizeModal = document.getElementById("grandPrizeModal");
+        grandPrizeModal.classList.add('hidden');
+        grandPrizeModal.classList.remove('flex');
     }
 </script>

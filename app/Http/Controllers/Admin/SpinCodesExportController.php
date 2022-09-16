@@ -14,9 +14,6 @@ class SpinCodesExportController extends Controller
         $spinCodes = SpinCode::query()->get([
             'id',
             'code',
-            // 'name',
-            // 'phone',
-            // 'email',
             'validation']);
         return Excel::download(new SpinCodesExport($spinCodes ?? []), 'spin_code.xlsx');
     }

@@ -41,15 +41,17 @@ class DashboardController extends Controller
         $selectedMonthStatus = false;
 
         $selectedMonth = $jsonResponse['month'];
-        $grandPrizeWinners = GrandPrizeWinner::where('month', $selectedMonth)->first();
+        $grandPrizeWinners = GrandPrizeWinner::where('month', $selectedMonth)->get();
 
         $maxMonthWinner = 8;
 
-        if ($grandPrizeWinners == null || count($grandPrizeWinners) <= $maxMonthWinner) {
+        if ($grandPrizeWinners == null || count($grandPrizeWinners) < $maxMonthWinner) {
             $eligiblePrizeWinners = PrizeWinner::where('shared', true)
                                         ->whereYear('created_at', '=', date('Y'))
                                         ->whereMonth('created_at', '=', $selectedMonth)
+                                        ->whereNotIn('id', GrandPrizeWinner::pluck('prize_winner_id'))
                                         ->get();
+
             (count($eligiblePrizeWinners) > 0)
                 ? $selectedMonthStatus = true
                 : session()->put('errorMessage', __('No eligible prize winners for selected month!'));
@@ -91,6 +93,7 @@ class DashboardController extends Controller
         $eligiblePrizeWinners = PrizeWinner::where('shared', true)
                                         ->whereYear('created_at', '=', date('Y'))
                                         ->whereMonth('created_at', '=', $selectedMonth)
+                                        ->whereNotIn('id', GrandPrizeWinner::pluck('prize_winner_id'))
                                         ->get();
 
         $randomGrandPrizeWinner =  rand(0, count($eligiblePrizeWinners) - 1);
@@ -108,7 +111,9 @@ class DashboardController extends Controller
 
         $spinCodes = SpinCode::all();
         foreach ($spinCodes as $spinCode) {
-            array_push($eligibleNames, $spinCode->name);
+            if ($spinCode->name != null) {
+                array_push($eligibleNames, $spinCode->name);
+            }
         }
 
         if ($winner != null) {

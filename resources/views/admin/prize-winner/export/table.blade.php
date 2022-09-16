@@ -21,7 +21,7 @@
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
-                        User Code
+                        Spin Code
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -33,10 +33,6 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
                         Name
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
-                        Phone
                     </th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-bold text-gray-900 uppercase tracking-wider">
@@ -58,16 +54,13 @@
                         {{ $prizewinner->spinCode->code }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ $prizewinner->prize->name }}
+                        {{ $prizewinner->prize->code }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 uppercase">
-                        {{ $prizewinner->prize->code }}
+                        {{ $prizewinner->prize->name }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{ $prizewinner->spinCode->name }}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {{ $prizewinner->spinCode->phone }}
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {{ $prizewinner->spinCode->email }}

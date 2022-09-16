@@ -18,9 +18,6 @@ class SpinCodeController extends Controller
 
         session()->forget('importError');
 
-        // //testing
-        // session()->flash('status', 'File imported successfully');
-
         return view('admin.spin-code.index', [
             'spinCodes' => $spinCodes,
         ]);

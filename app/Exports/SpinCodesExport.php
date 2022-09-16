@@ -26,9 +26,6 @@ class SpinCodesExport implements FromCollection, WithHeadings, ShouldAutoSize
             $output[] = [
                 $spinCode->id,
                 $spinCode->code,
-                // $spinCode->name,
-                // $spinCode->phone,
-                // $spinCode->email,
                 $spinCode->validation ? 'Yes' : 'No',
             ];
         }
@@ -41,9 +38,6 @@ class SpinCodesExport implements FromCollection, WithHeadings, ShouldAutoSize
         return [
             'id',
             'code',
-            // 'name',
-            // 'phone',
-            // 'email',
             'validation',
         ];
     }

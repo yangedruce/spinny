@@ -14,18 +14,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // session()->flush();
         $prizes = Prize::all();
-        return view('home.index')->with(['prizes' => $prizes]);
-    }
-
-    /**
-     * Display leadearboard page.
-     */
-    public function showLeaderboard()
-    {
         $prizeWinners = PrizeWinner::paginate(10);
-        return view('home.leaderboard')->with([
+        return view('home.index')->with([
+            'prizes' => $prizes,
             'prizeWinners' => $prizeWinners,
         ]);
     }
@@ -40,6 +32,18 @@ class HomeController extends Controller
     public function getPrize()
     {
         return Prize::all();
+    }
+
+    /**
+     * Get prize winner.
+     */
+    public function getPrizeWinner()
+    {
+        $prizeWinners = PrizeWinner::paginate(10);
+        $prizeWinners->withPath('');
+
+        return view('home.partials.pagination')->with(['prizeWinners' => $prizeWinners])->render();
+
     }
 
     /**
@@ -127,10 +131,11 @@ class HomeController extends Controller
 
         $jsonResponse = $this->convertToJson($request);
 
+        $name = $jsonResponse['name'];
         $email = $jsonResponse['email'];
         $code = $jsonResponse['code'];
 
-        $isCodeValid = $this->checkCodeValidity($email, $code);
+        $isCodeValid = $this->checkCodeValidity($name, $email, $code);
 
         if ($isCodeValid) {
             $winningPrize = $this->setWinningPrize();
@@ -139,12 +144,13 @@ class HomeController extends Controller
             $winningPrize->remaining = $winningPrize->remaining - 1;
             $winningPrize->update();
 
-            $spinCode = SpinCode::where('email', $email)->where('code', $code)->first();
+            $spinCode = SpinCode::where('code', $code)->first();
 
             // Update spin code.
+            $spinCode->name = $name;
+            $spinCode->email = $email;
             $spinCode->validation = true;
             $spinCode->update();
-
 
             // Add prize winner
             $prizeWinner = PrizeWinner::create([
@@ -194,11 +200,18 @@ class HomeController extends Controller
      *
      * @return bool $isCodeUnused
      */
-    public function checkCodeValidity($email, $code)
+    public function checkCodeValidity($name, $email, $code)
     {
         $isCodeValid = false;
 
-        $spinCode = SpinCode::where('email', $email)->where('code', $code)->first();
+        if ($name == null || $email == null || $code == null) {
+            if ($code == null) session()->put('errorMessage', __('Code field cannot be empty!'));
+            if ($email == null) session()->put('errorMessage', __('Email field cannot be empty!'));
+            if ($name == null) session()->put('errorMessage', __('Name field cannot be empty!'));
+            return $isCodeValid;
+        }
+        
+        $spinCode = SpinCode::where('code', $code)->first();
 
         if ($spinCode != null) {
             $prizeWinner = PrizeWinner::where('spin_code_id', $spinCode->id)->first();
@@ -211,7 +224,7 @@ class HomeController extends Controller
                 session()->put('errorMessage', __('This code has already been redeemed!'));
             }
         } else {
-            session()->put('errorMessage', __('Invalid credentials!'));
+            session()->put('errorMessage', __('Invalid code!'));
         }
 
         return $isCodeValid;

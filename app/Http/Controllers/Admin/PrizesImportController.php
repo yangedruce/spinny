@@ -19,6 +19,10 @@ class PrizesImportController extends Controller
     {
         $file = $request->file('import_file');
 
+        if ($file == null) {
+            return redirect()->back()->withErrors('No file is chosen!');
+        }
+
         $extension = $file->extension();
 
         if ($extension == 'xlsx' || $extension == 'xls') {
@@ -28,7 +32,7 @@ class PrizesImportController extends Controller
                 $importError = session()->get('importError');
             }
             if ($importError) {
-                return redirect()->back()->withErrors('Column format is invalid');
+                return redirect()->back()->withErrors('Column format is invalid!');
             } else {
                 $request->session()->flash('status', 'File imported successfully.');
 

@@ -11,7 +11,7 @@ class GrandPrizeWinner extends Model
 
     protected $fillable = [
         'month',
-        'user_code_id',
+        'spin_code_id',
         'prize_winner_id'
     ];
 

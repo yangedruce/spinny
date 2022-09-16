@@ -30,12 +30,12 @@
                     @foreach ($prizes as $prize)
                     <div
                         class="h-64 w-64 shrink-0 border mx-4 relative border-rose-200 rounded-lg flex justify-center items-center">
-                        {{ $prize->prize_name }}</div>
+                        {{ $prize->name }}</div>
                     @endforeach
                 </div>
             </div>
             <div class="items-center justify-center my-8">
-                @include('admin.partials.grandPrizeModal')
+                @include('admin.partials.grand-prize-modal')
             </div>
         </div>
     </div>

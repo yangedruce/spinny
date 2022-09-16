@@ -10,11 +10,11 @@ class SpinCodesImport implements ToModel, WithHeadingRow
 {
     public function model(array $row)
     {
-        if (! array_key_exists('code', $row)) {
+        if (! array_key_exists('code', $row) || count($row) > 2) {
             session()->flash('importError', true);
             return;
         }
-
+        
         if ($row['code'] != null) {
             $spinCodes = SpinCode::all();
 

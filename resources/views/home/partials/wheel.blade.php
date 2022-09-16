@@ -1,11 +1,4 @@
-{{--
-
-<div class="flex justify-center lg:mt-28">
-    <div id="spinTheWheel">
-    </div>
-</div> --}}
 <div class="relative">
-
     <div class="absolute h-12 bg-black w-5 top-0" style="
             clip-path: polygon(50% 100%, 0 0, 100% 0);
             left: calc(300px - 10px);

@@ -1,7 +1,8 @@
-<div x-data="{show:false}" class="z-50">
-    <button @click="show=true" class="inline-flex items-center px-4 py-2 bg-rose-800 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-rose-700 active:bg-rose-900 focus:outline-none focus:border-rose-900 focus:ring ring-rose-300 disabled:opacity-25 transition ease-in-out duration-150" type="button">
+<button @click="show=true" class="inline-flex items-center px-4 py-2 bg-rose-800 border border-transparent font-semibold text-xs text-white uppercase tracking-widest hover:bg-rose-700 active:bg-rose-900 focus:outline-none focus:border-rose-900 focus:ring ring-rose-300 disabled:opacity-25 transition ease-in-out duration-150" type="button">
         Modal
     </button>
+<div x-data="{show:false}" class="z-50">
+    
 
     <div x-show="show" class="inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 fixed h-full top-0">
         <div @click.away="show = false" class="w-11/12 md:w-2/3 lg:w-3/5 xl:w-1/3 p-6 bg-white rounded-md">

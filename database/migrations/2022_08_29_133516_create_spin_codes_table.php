@@ -17,7 +17,6 @@ class CreateSpinCodesTable extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name')->nullable();
-            $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->boolean('validation')->nullable()->default(false);
             $table->timestamps();
@@ -31,6 +30,6 @@ class CreateSpinCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_codes');
+        Schema::dropIfExists('spin_codes');
     }
 }
