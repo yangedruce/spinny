@@ -33,6 +33,7 @@
 
                 wheel = new Winwheel({
                     'canvasId' : 'wheel',
+                    'outerRadius'  : 232,
                     'numSegments' : prize.length,
                     'segments' : segments,
                     'fillStyle' : '#fecdd3',

@@ -21,6 +21,19 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ asset('js/Winwheel.min.js') }}"></script>
+
+    <style>
+        .wheel-container{
+            height: 280px;
+            width: 320px;
+        }
+        @media(min-width: 640px) {
+            .wheel-container{
+                height: 500px;
+                width: 600px;
+            }
+        }
+    </style>
 </head>
 
 <body>
