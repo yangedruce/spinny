@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
             ->insert([
                 [
                     'name' => 'Admin',
-                    'email' => 'admin@yoodo.com.my',
+                    'email' => 'admin@spinny.com.my',
                     'password' => bcrypt('secret')
                 ]
             ]);
