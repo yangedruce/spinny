@@ -3,7 +3,7 @@
     @csrf
 
     <div class="font-black text-center text-6xl text-rose-800 drop-shadow-lg shadow-rose-500/50 my-8">Spin The Wheel</div>
-    <p class="text-center text-sm font-medium text-gray-600">Win your share of RM10,000 worth of prizes with Yoodo! Which guaranteed prize is yours today? Spin & Win now!</p>
+    <p class="text-center text-sm font-medium text-gray-600">Win your share of RM10,000 worth of prizes with Spinny! Which guaranteed prize is yours today? Spin & Win now!</p>
     <p class="mt-8 text-xs text-gray-600">Please fill in your details.</p>
 
     <div class="flex flex-col md:flex-row md:items-center gap-0 md:gap-4 w-full">
@@ -25,7 +25,7 @@
 
     <label for="agree" class="inline-flex items-center mt-4">
         <input id="agree" type="checkbox" class="border-gray-300 text-rose-600 shadow-sm focus:border-rose-300 focus:ring focus:ring-rose-200 focus:ring-opacity-50" name="agree" required>
-        <span class="ml-2 text-xs text-gray-600">{{ __('I agree to Yoodo Terms & Conditions. I also agree to receive marketing e-mails from Yoodo.') }}</span>
+        <span class="ml-2 text-xs text-gray-600">{{ __('I agree to Spinny Terms & Conditions. I also agree to receive marketing e-mails from Spinny.') }}</span>
     </label>
 
     <div class="flex flex-col md:flex-row justify-center gap-4 mt-8">
